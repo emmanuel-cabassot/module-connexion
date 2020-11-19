@@ -1,5 +1,6 @@
 <?php
 session_start();
+$erreur_modification = null;
 $db = mysqli_connect('localhost', 'root', '', 'moduleconnexion');
 
 // Contrôler la connexion
@@ -24,7 +25,13 @@ else
         // Requête d'insertion
         $nouvelle_inscription="INSERT INTO utilisateurs (nom, prenom, login, password) VALUES ('$nom', '$prenom', '$login', '$password')";
         // Exécution de la reqête
-        mysqli_query($db, $nouvelle_inscription) or die('Erreur SQL !'.$nouvelle_inscription.'<br>'.mysqli_error($db));
+        $requete_enregistree = mysqli_query($db, $nouvelle_inscription) or die('Erreur SQL !'.$nouvelle_inscription.'<br>'.mysqli_error($db));
+        if (isset($requete)) {
+            header(connexion.php)
+        }
+        else{
+            $erreur_modification = 'Erreur sur l\'enregistrement de votre profil.';
+        }
     }
 }
 ?>
@@ -49,6 +56,10 @@ else
                     if (isset($message)) 
                     {
                         echo $message;
+                    }
+                    if (isset($erreur_modification)) 
+                    {
+                        echo $erreur_modification;
                     }
                     ?>  
                     </p>                  
