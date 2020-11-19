@@ -26,8 +26,8 @@ else
         $nouvelle_inscription="INSERT INTO utilisateurs (nom, prenom, login, password) VALUES ('$nom', '$prenom', '$login', '$password')";
         // Exécution de la reqête
         $requete_enregistree = mysqli_query($db, $nouvelle_inscription) or die('Erreur SQL !'.$nouvelle_inscription.'<br>'.mysqli_error($db));
-        if (isset($requete)) {
-            header(connexion.php)
+        if (isset($requete_enregistree)) {
+            header("Location: connexion.php");
         }
         else{
             $erreur_modification = 'Erreur sur l\'enregistrement de votre profil.';
